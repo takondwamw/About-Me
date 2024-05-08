@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show AppBar, AssetImage, BuildContext, Center, CircleAvatar, Colors, Column, CrossAxisAlignment, Divider, EdgeInsets, FloatingActionButton, FontWeight, Icon, Icons, MaterialApp, Padding, Row, Scaffold, SizedBox, State, StatefulWidget, Text, TextStyle, Widget, runApp;
 
 void main() {
   runApp(MaterialApp(
@@ -6,10 +6,17 @@ void main() {
   ));
 }
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
   const NinjaCard({super.key});
 
   @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  @override
+  int experience = 1;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black45,
@@ -23,6 +30,15 @@ class NinjaCard extends StatelessWidget {
         backgroundColor: Colors.grey[850],
 
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed :(){
+          setState(() {
+            experience += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30, 0.0),
@@ -56,16 +72,19 @@ class NinjaCard extends StatelessWidget {
                 fontWeight: FontWeight.bold
               ),
             ),
-            SizedBox(height: 30.0),
-            Text(
+            const SizedBox(height: 30.0),
+            const Text(
               'Years OF Experience',
               style: TextStyle(
                 color: Colors.grey,
                 letterSpacing: 2.0,
               ),
             ),
+
+            const SizedBox(height: 30.0),
+
             Text(
-              '4+',
+              '$experience',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -74,7 +93,7 @@ class NinjaCard extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             Row(
               children: [
                 Icon(
